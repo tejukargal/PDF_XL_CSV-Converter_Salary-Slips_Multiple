@@ -1,0 +1,10 @@
+streamlit
+pandas
+PyPDF2
+xlsxwriter
+openpyxl
+python-dateutil
+pytz
+six
+numpy
+pillow
