@@ -232,8 +232,41 @@ def format_currency(value):
 def main():
     st.set_page_config(page_title="Salary Slip PDF to CSV Converter", layout="wide")
     
+    # Custom CSS for watermark
+    st.markdown("""
+        <style>
+        [data-testid="stSidebar"] .watermark {
+            position: relative;
+            text-align: left;
+            padding: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+            font-style: italic;
+            opacity: 0.9;
+            background: linear-gradient(45deg, #1e88e5, #e91e63);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInOut 2s infinite alternate;
+        }
+        
+        @keyframes fadeInOut {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            [data-testid="stSidebar"] .watermark {
+                background: linear-gradient(45deg, #90caf9, #f48fb1);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+        </style>
+        """, unsafe_allow_html=True)
+    
     # Sidebar
     with st.sidebar:
+        st.markdown('<div class="watermark">by Teju SMP</div>', unsafe_allow_html=True)
         st.title("File Management")
         st.subheader("Upload Files")
         uploaded_files = st.file_uploader(
