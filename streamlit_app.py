@@ -25,8 +25,8 @@ def extract_salary_details(pdf_path):
                     
                     # Basic Details
                     emp_no_match = re.search(r'EMP No\s+(\d+)', slip)
-                    name_match = re.search(r'Sri / Smt:\s+([A-Z\s]+)', slip)
-                    designation_match = re.search(r'Designation:\s+([A-Z\s]+)', slip)
+                    name_match = re.search(r'Sri\s*/\s*Smt:?\s*([A-Z][A-Z\s\.]+)(?=\s*Days Worked|Designation|\s*PAN)', slip)
+                    designation_match = re.search(r'Designation:?\s*([A-Z][A-Z\s\(\)]+)(?=\s*Pay Scale|Group|\s*Basic)', slip)
                     pay_scale_match = re.search(r'Pay Scale\s*:\s*(\d+)-(\d+)', slip)
                     ddo_code_match = re.search(r'DDO Code\s*:\s*(\w+)', slip)
                     days_worked_match = re.search(r'Days Worked:\s*(\d+)', slip)
@@ -241,12 +241,12 @@ def main():
             padding: 10px 0;
             font-size: 18px;
             font-weight: bold;
-            font-style: italic;
+            # font-style: italic;
             opacity: 0.9;
             background: linear-gradient(45deg, #1e88e5, #e91e63);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: fadeInOut 2s infinite alternate;
+            animation: fadeInOut 1.5s infinite alternate;
         }
         
         @keyframes fadeInOut {
